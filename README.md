@@ -8,7 +8,7 @@ Run `npm install` in order to setup application
 Run `npm start` for a dev server.
 
 ## Notes
-+ Text sample is give in `text.service.js`
++ Text sample is given in `text.service.js`
 + Given files structure is not obligatory and could be changed
 
 
