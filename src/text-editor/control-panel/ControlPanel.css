@@ -10,3 +10,7 @@
     width: 200px;
     margin-right: 400px;
 }
+
+.active {
+    background-color: red;
+}
