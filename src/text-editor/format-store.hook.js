@@ -18,29 +18,29 @@ export function useFormatStore() {
     return [appliedFormats, applyFormat, clearStore];
 }
 
-function applyFormat(format, value, shouldStore = true) {
+function applyFormat(format, value, shouldReplace = false) {
     formatSelection(format, value);
-
-    if (shouldStore) {
-        storeSelection(format)
-    }
+    storeSelection(format, shouldReplace);
 }
 
 function formatSelection(commandId, value) {
     document.execCommand(commandId, false, value);
 }
 
-function storeSelection(format) {
+function storeSelection(format, shouldReplace) {
     const {focusNode, focusOffset} = getSelection();
 
-    updateStore(focusNode, focusOffset, format);
+    updateStore(focusNode, focusOffset, format, shouldReplace);
 }
 
-function updateStore(key, hash, item) {
+function updateStore(key, hash, item, shouldReplace) {
     if (store.has(key)) {
         const [storedHash, list] = store.get(key);
 
-        if (hash !== storedHash) {
+        if (shouldReplace) {
+            store.set(key, [hash, new Set(list)]);
+            return;
+        } else if (hash !== storedHash) {
             return;
         }
 

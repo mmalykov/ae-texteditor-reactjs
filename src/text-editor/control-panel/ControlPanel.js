@@ -16,7 +16,7 @@ function ControlPanel({formats, onFormatChange}) {
 
 
     function onSynonymPick(word) {
-        onFormatChange('insertText', word, false);
+        onFormatChange('insertText', word, true);
     }
 
     return (
